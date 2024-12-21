@@ -4,6 +4,7 @@ import { firestore } from "../firebase";
 
 interface ParticipantsFormProps {
   isClosed: boolean;
+  refresh: () => void;
 }
 
 function ParticipantsForm(props: ParticipantsFormProps) {
@@ -24,6 +25,8 @@ function ParticipantsForm(props: ParticipantsFormProps) {
       console.log("Document written with ID: ", docRef.id);
     } catch (error) {
       console.error(error);
+    } finally {
+      props.refresh();
     }
   };
 
